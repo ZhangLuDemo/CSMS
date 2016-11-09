@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>自定义菜单</title>
+<style type="text/css">
+td {
+	font-size: 14px;
+}
+
+body {
+	font: 14px/1.5 "microsoft yahei", Helvetica, Tahoma, Arial,
+		"Microsoft jhengHei", sans-serif;
+	color: #404040;
+}
+
+#phone {
+	position: relative;
+	margin: 0 0;
+	width: 400px;
+	height: 698px;
+	background: url('__ROOT__public/wechat/image/preview_phone_short.jpg')
+		no-repeat center 0;
+}
+
+#frame {
+	position: absolute;
+	left: 0;
+	margin: 100px 0 0 40px;
+	width: 320px;
+	border: 2px solid #333;
+	background: #666;
+	height: 487px;
+	width: 320px;
+	overflow: hidden;
+}
+
+.wx_menu {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	background: #fff;
+}
+
+.wx_menu .keyboard {
+	float: left;
+	width: 44px;
+	height: 50px;
+	background: url(__ROOT__public/wechat/image/wx_menu_keyboard_icon.png)
+		no-repeat;
+	background-size: 100% 100%;
+	border-right: 1px solid #CCC;
+}
+
+.wx_menu .menu {
+	display: -webkit-box;
+	height: 50px;
+	float: left;
+	width: 275px;
+}
+
+.wx_menu .menu>div {
+	-webkit-box-flex: 1;
+	display: block;
+	line-height: 50px;
+	color: #434343;
+	text-align: center;
+	border-right: 1px solid #ccc;
+	position: relative;
+}
+
+.wx_menu .menu>div:last-child {
+	border: none;
+}
+
+.wx_menu .menu>div img {
+	width: 12px;
+	vertical-align: -1px;
+	margin-right: 2px;
+}
+
+.wx_menu .sub_menu {
+	position: absolute;
+	bottom: -358px;
+	margin-left: 0;
+	padding: 0 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #fff;
+	text-align: center;
+	z-index: 10;
+}
+
+.m_a_i {
+	position: relative;
+	z-index: 100;
+	background: #fff;
+}
+
+.wx_menu .sub_menu a {
+	display: block;
+	color: #434343;
+	border-bottom: 1px solid #ddd;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 5px;
+	white-space: nowrap
+}
+
+.wx_menu .sub_menu a:last-child {
+	border: none;
+}
+
+.wx_menu .sub_menu em {
+	position: absolute;
+	width: 10px;
+	height: 8px;
+	bottom: -7px;
+	left: 50%;
+	margin-left: -5px;
+	background: url(__ROOT__public/wechat/image/arrow_down.png) no-repeat
+		center bottom;
+}
+</style>
+</head>
+<body>
+	<div class="span9 page_message">
+		<section id="contents">
+			<div class="table-bar" style="display: none">
+				<div class="fl">
+					<div class="tools">
+						<a class="btn"
+							href="http://127.0.0.1:88/weiphpdev-weiphp3.0-master/index.php?s=/addon/CustomMenu/CustomMenu/add/model/34.html">新
+							增</a>
+						<button class="btn ajax-post confirm" target-form="ids"
+							url="http://127.0.0.1:88/weiphpdev-weiphp3.0-master/index.php?s=/addon/CustomMenu/CustomMenu/del/model/34.html">删
+							除</button>
+						<button class="btn ajax-post confirm" target-form="ids"
+							url="http://127.0.0.1:88/weiphpdev-weiphp3.0-master/index.php?s=/addon/CustomMenu/CustomMenu/send_menu/model/34.html">生成微信自定义菜单</button>
+					</div>
+				</div>
+				<!-- 高级搜索 -->
+				<div class="search-form fr cf">
+					<div class="sleft">
+						<input name="title" class="search-input" value=""
+							placeholder="请输入关键字" type="text"> <a class="sch-btn"
+							href="javascript:;" id="search"
+							url="http://127.0.0.1:88/weiphpdev-weiphp3.0-master/index.php?s=/addon/CustomMenu/CustomMenu/lists/model/custom_menu.html"><i
+							class="btn-search"></i></a>
+					</div>
+				</div>
+			</div>
+
+			<!-- 数据列表 -->
+			<div class="data-table" style="margin-top: 40px; overflow: hidden">
+				<div class="" style="float: left;">
+					<div id="phone">
+						<div id="frame">
+							<div class="wx_menu">
+								<span class="keyboard"></span>
+								<div class="menu"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" table-striped" style="float: right; width: 540px">
+					<table cellspacing="1" cellpadding="0"
+						style="width: 100%; background: #ddd;">
+						<!-- 表头 -->
+						<thead>
+							<tr
+								style="text-align: left; color: #333; padding: 10px; background-color: #eaeaea; height: 19px; line-height: 19px; font-weight: 400; word-break: break-all; word-wrap: break-word;">
+								<th><a
+									href="{:url('CustomMenu/add?id='.$id)}"
+									style="color: #4097ce; text-decoration: none;">+添加</a></th>
+								<th
+									style="text-align: left; color: #333; padding: 10px; background-color: #eaeaea; height: 19px; line-height: 19px; font-weight: 400; word-break: break-all; word-wrap: break-word;">操作</th>
+							</tr>
+						</thead>
+						<!-- 列表 -->
+						<tbody>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+			<div class="form-item form_bh" style="margin: 20px;">
+				<button style="padding: 12px 40px;" class="btn ajax-post confirm"
+					type="button" target-form="ids"
+					url="http://127.0.0.1:88/weiphpdev-weiphp3.0-master/index.php?s=/addon/CustomMenu/CustomMenu/send_menu/model/custom_menu.html">发布</button>
+			</div>
+			<div class="page"></div>
+		</section>
+	</div>
+</body>
+</html>

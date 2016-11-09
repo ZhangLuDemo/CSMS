@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- 可选的Bootstrap主题文件（一般不使用） -->
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: #9da0a4">
+	<div style="width: 100%; height: 80px; background-color: #ffffff">
+		<div
+			style="margin-top: 5px; %; margin-left: 5%; height: 100%; float: left;">
+			<h3>公众号信息</h3>
+		</div>
+		<div class="btn-group"
+			style="margin-top: 20px; %; margin-left: 65%; height: 45%; float: left;">
+			<button type="button" class="btn btn-primary" style="height: 100%;">公众号信息</button>
+			<button type="button" class="btn btn-primary dropdown-toggle"
+				data-toggle="dropdown" style="height: 100%;">
+				<span class="caret"></span> <span class="sr-only">切换下拉菜单</span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="#">功能</a></li>
+				<li><a href="#">另一个功能</a></li>
+				<li><a href="#">其他</a></li>
+				<li class="divider"></li>
+				<li><a href="#">分离的链接</a></li>
+			</ul>
+		</div>
+	</div>
+	<div align="center" style="margin-top: 30px;">
+		<div style="width: 85%; height: 400px; background: #ffffff;">
+			<div style="position: relative; width: 95%;">
+				<h4 style="float: left; margin-top: 20px; font-size: medium">
+					<img style="vertical-align: middle; height: 30px"
+						src="__ROOT__public/wechat/image/weixin.png"> 我的公众号
+				</h4>
+				<button type="button" class="btn btn-success"
+					style="float: right; margin-top: 15px; font-size: medium"
+					id="open_form">+ 新增公众号</button>
+				<!-- 弹出框 -->
+				<div class="theme-popover"
+					style="position: absolute; left: 25%; top: 0px; width: 500px; background-color: #9d9d9d; display: none; z-index: 3;"
+					id="show_form">
+					<div class="theme-popbod dform" style="position: relative;">
+						<div
+							style="width: 20px; height: 20px; position: absolute; right: 20px;"
+							id="close_form">
+							<img src="__ROOT__public/wechat/image/close.png">
+						</div>
+						<form action="" method="post">
+							<select class="form-control" style="width: 40%" name="wx_type">
+								<option value="0" selected="">普通订阅号</option>
+								<option value="1">微信认证订阅号</option>
+								<option value="2">普通服务号</option>
+								<option value="3">微信认证服务号</option>
+							</select> <br />
+							<div class="input-group" style="width: 80%;">
+								<span class="input-group-addon">公众号名称 </span> <input type="text"
+									class="form-control" name="wx_name" placeholder="公众号名称 ">
+							</div>
+							<br />
+							<div class="input-group" style="width: 80%;">
+								<span class="input-group-addon">原始ID</span> <input type="text"
+									class="form-control" name="wx_id" placeholder="原始ID">
+							</div>
+							<br />
+							<div class="input-group" style="width: 80%;">
+								<span class="input-group-addon">AppID </span> <input type="text"
+									class="form-control" name="wx_app_id" placeholder="AppID ">
+							</div>
+							<br />
+							<div class="input-group" style="width: 80%;">
+								<span class="input-group-addon">AppSecret </span> <input
+									type="text" class="form-control" name="wx_app_secret"
+									placeholder="AppSecret  ">
+							</div>
+							<br />
+							<div class="input-group" style="width: 80%;">
+								<span class="input-group-addon">Token</span> <input type="text"
+									class="form-control" name="wx_token" placeholder="Token">
+							</div>
+							<br />
+							<div class="input-group" style="width: 80%;">
+								<span class="input-group-addon">EncodingAESKey </span> <input
+									type="text" class="form-control" name="wx_encodingAESKey"
+									placeholder="EncodingAESKey ">
+							</div>
+							<button type="button" class="btn btn-success"
+								style="width: 100px" id="add_wx">保持</button>
+						</form>
+					</div>
+				</div>
+				{neq name="cnt" value="0"}
+				<div class="container" style="width: 100%; z-index: 2;">
+					<div class="row clearfix">
+						<div class="col-md-12 column">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>公众号ID</th>
+										<th>公众号名称</th>
+										<th>Token</th>
+										<th style="width: 35%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									{volist name="array_publics" id="vo"}
+									<tr class="success">
+										<td>{$vo.id}</td>
+										<td>{$vo.wx_name}</td>
+										<td>{$vo.wx_token}</td>
+										<td><a href="{:url('Publics/main?id='.$vo.id)}"
+											target="_self">进入管理</a>&nbsp;&nbsp;&nbsp; <a
+											href="http://127.0.0.1:88/weiphp3.0-master/index.php?s=/Home/Public/check_res/id/5.html"
+											target="_self">自动检测</a>&nbsp;&nbsp;&nbsp; <a
+											href="http://127.0.0.1:88/weiphp3.0-master/index.php?s=/Home/PublicLink/lists/mp_id/5.html"
+											target="_self">管理员配置</a>&nbsp;&nbsp;&nbsp; <a
+											href="http://127.0.0.1:88/weiphp3.0-master/index.php?s=/Home/Public/step_0/id/5.html"
+											target="_self">编辑</a>&nbsp;&nbsp;&nbsp; <a
+											href="javascript:;" onclick="do_del('5','12')">取消绑定</a></td>
+										</td>
+									</tr>
+									{/volist}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				{/neq}
+			</div>
+		</div>
+	</div>
+	<script>
+    $(function () {
+        $('#open_form').click(function () {
+            $('#show_form').show();
+        });
+        $('#close_form').click(function () {
+            $('#show_form').hide();
+        });
+        $('#add_wx').click(function () {
+            var data = $('form').serialize();
+            $.post("{:url('Publics/add_wx')}", data, function (res) {
+                var msg = res.msg;
+                alert(msg);
+            }, 'json');
+        });
+    });
+</script>
+</body>
+</html>

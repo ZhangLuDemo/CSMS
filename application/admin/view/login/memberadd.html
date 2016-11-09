@@ -1,0 +1,275 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <LINK rel="Bookmark" href="__PUBLIC__favicon.ico">
+    <LINK rel="Shortcut Icon" href="__PUBLIC__favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__lib/Hui-iconfont/1.0.7/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__lib/icheck/icheck.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/css/style.css"/>
+
+    <title>添加管理员</title>
+</head>
+<body>
+<article class="page-container">
+    <form class="form form-horizontal" id="form-member-add" enctype="multipart/form-data"
+          action="__CSMS____ADMIN__Login/menberadd_insert" method="post">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">
+                <sapn style="display: inline-block;width: 1em;"></sapn>
+                <span class="c-red">*</span>用户名:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="password" class="input-text" value="" placeholder="" id="password" name="password">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="password" class="input-text" value="" placeholder="" id="new_password" name="new_password">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
+            <div class="formControls col-xs-8 col-sm-9 skin-minimal">
+                <div class="radio-box">
+                    <input name="sex" type="radio" id="sex-1" checked value="男">
+                    <label for="sex-1">男</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="sex-2" name="sex" value="女">
+                    <label for="sex-2">女</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="sex-3" name="sex" value="保密">
+                    <label for="sex-3">保密</label>
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="mobile" name="mobile">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="@" name="email" id="email">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">附件：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
+				<input class="input-text upload-url" type="text" name="uploadfile" id="uploadfile" readonly
+                       nullmsg="请添加附件！" style="width:200px">
+				<a href="javascript:void();" class="btn btn-primary radius upload-btn"><i
+                        class="Hui-iconfont">&#xe642;</i>上传图片</a>
+                <input type="file" name="file" class="input-file">
+				</span></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">所在城市：</label>
+            <div class="formControls col-xs-8 col-sm-9" style="width:auto"> <span class="select-box">
+                <select class="select" size="1" name="sheng" style="width: 100px" id="sheng">
+                    <option value="" selected id="shengvalue">请选择省</option>
+                </select>
+				<select class="select" size="1" name="shi" style="width: 100px" id="shi">
+                    <option value="" selected>请选择市</option>
+                </select>
+                     <select class="select" size="1" name="quxian" style="width: 100px" id="quxian">
+                         <option value="" selected>请选择区县</option>
+                     </select>
+            </div>
+            </span></div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;"
+                       id="submitbutton">
+            </div>
+        </div>
+    </form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__CSS__lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__CSS__lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__CSS__lib/icheck/jquery.icheck.min.js"></script>
+<script type="text/javascript" src="__CSS__lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="__CSS__lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__CSS__lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<script type="text/javascript" src="__CSS__static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="__CSS__static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+
+<script type="text/javascript">
+    $(function () {
+        var zui_shengCode = "";
+        var zui_shiCode = "";
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+        $("#sheng").click(function () {
+            var shenglength = $("#sheng").val().length;
+            if (shenglength == 0) {
+                $.ajax({
+                    url: '/public/xml/LocList.xml',
+                    dataType: 'xml',
+                    type: 'GET',
+                    timeout: 2000,
+                    success: function (xml) {
+                        $(xml).find("State").each(function (i) {
+                            var Code = $(this).attr("Code");
+                            var Name = $(this).attr("Name");
+                            $("<option value='" + Code + "'>" + Name + "</option>").appendTo("#sheng");
+                        });
+                    },
+                });
+            }
+        });
+        $("#shi").click(function () {
+            var shengCode = $("#sheng").val();
+            if (shengCode != zui_shengCode) {
+                $("#shi").empty();
+                $.ajax({
+                    url: '/public/xml/LocList.xml',
+                    dataType: 'xml',
+                    type: 'GET',
+                    timeout: 2000,
+                    success: function (xml) {
+                        $(xml).find("State").each(function (i) {
+                            var Code = $(this).attr("Code");
+                            if (shengCode == Code) {
+                                zui_shengCode = Code;
+                                $(this).find("City").each(function (i) {
+                                    var shiName = $(this).attr("Name");
+                                    var shiCode = $(this).attr("Code");
+                                    $("<option value='" + shiCode + "'>" + shiName + "</option>").appendTo("#shi");
+                                });
+                            }
+                        });
+                    },
+                });
+            }
+        });
+        $("#quxian").click(function () {
+
+            var select_shiCode = $("#shi").val();
+            var shengCode = $("#sheng").val();
+            if (zui_shiCode != select_shiCode) {
+                $("#quxian").empty();
+                $.ajax({
+                    url: '/public/xml/LocList.xml',
+                    dataType: 'xml',
+                    type: 'GET',
+                    timeout: 2000,
+                    success: function (xml) {
+                        $(xml).find("State").each(function (i) {
+                            var Code = $(this).attr("Code");
+                            if (shengCode == Code) {
+                                var State = $(this);
+                                State.find("City").each(function (i) {
+                                    var shiCode = $(this).attr("Code");
+                                    if (shiCode == select_shiCode) {
+                                        var City = $(this);
+                                        zui_shiCode = $(this).attr("Code");
+                                        var shiName = $(this).attr("Name");
+                                        var Code = "";
+                                        var Name = "";
+                                        var findCity = City.find("Region");
+                                        if (findCity.length==0) {
+                                            Code = zui_shiCode;
+                                            Name = shiName;
+                                            $("<option value='" + Code + "'>" + Name + "</option>").appendTo("#quxian");
+                                        } else {
+                                            City.find("Region").each(function (i) {
+                                                Code = $(this).attr("Code");
+                                                Name = $(this).attr("Name");
+                                                $("<option value='" + Code + "'>" + Name + "</option>").appendTo("#quxian");
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    },
+                });
+            }
+        });
+        $("#form-member-add").validate({
+            rules: {
+                username: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 16
+                },
+                sex: {
+                    required: true,
+                },
+                mobile: {
+                    required: true,
+                    isMobile: true,
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                uploadfile: {
+                    required: true,
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                new_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+            },
+            messages: {
+                new_password: {
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于 5 个字母",
+                    equalTo: "两次密码输入不一致"
+                },
+            },
+            onkeyup: false,
+            focusCleanup: true,
+            success: "valid",
+//            submitHandler: function (form) {
+//                //$(form).ajaxSubmit();
+//                var index = parent.layer.getFrameIndex(window.name);
+//                //parent.$('.btn-refresh').click();
+//                parent.layer.close(index);
+//            }
+            // });
+//        jQuery("#submitbutton").click(function () {
+//            var d = jQuery('form').serialize();// 要提交的表单
+//            jQuery.post("__CSMS____ADMIN__Login/menberadd_insert", d, function (result) {
+//                alert(result);
+//            }, "text");
+        });
+    });
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

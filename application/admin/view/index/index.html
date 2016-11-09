@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <link href="__CSS__index.css" rel='stylesheet' type='text/css'/>
+    <LINK rel="Bookmark" href="__IMG__index.png">
+    <LINK rel="Shortcut Icon" href="__IMG__index.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="__CSS__lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } 
+    function validationUser() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var captcha = document.getElementById("captcha").value;
+        if(username.length==0&&password.length>0){
+            document.getElementById("showUsernameError").innerHTML="*账号不能为空";
+            return;
+        }
+        if(password.length==0){
+            document.getElementById("showPasswordError").innerHTML="*密码不能为空";
+            return;
+        }
+//        if (window.XMLHttpRequest)
+//        {
+//            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行的代码
+//            xmlhttp=new XMLHttpRequest();
+//        }
+//        else
+//        {
+//            //IE6, IE5 浏览器执行的代码
+//            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+//        }
+//        xmlhttp.onreadystatechange=function()
+//        {
+//            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+//            {
+//                var result = xmlhttp.responseText;
+//                if(result=="1"){
+////                    document.getElementById("showUsernameError").innerHTML="";
+//                    document.getElementById("showPasswordError").innerHTML="";
+//                    window.location.href="__CSMS__admin/Login/main";
+//                }else{
+////                    document.getElementById("showUsernameError").innerHTML="";
+//                    document.getElementById("showPasswordError").innerHTML=xmlhttp.responseText;
+//                }
+//            }
+//        }
+//        xmlhttp.open("POST","__CSMS__admin/Index/index",true);
+//        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//        xmlhttp.send("username="+username+"&password="+password+"&captcha="+captcha+"");
+    }
+    $(function () {
+        $("#submitForm").click(function () {
+            var f = jQuery('form').serialize();// 要提交的表单
+            $.post("__CSMS__admin/Index/index", f, function (data) {
+                var msg = data.msg;
+                if(msg == 'success'){
+                    window.location.href="__CSMS__admin/Login/main";
+                }
+                if(msg == 'yzmerror'){
+                    $("#showPasswordError").html("验证码错误!");
+                }
+                if(msg == "passerror"){
+                    $("#showPasswordError").html("密码错误!");
+                }
+                if(msg == "usererror"){
+                    $("#showPasswordError").html("账号不存在!");
+                }
+            }, "json");
+        });
+    });
+    </script>
+</head>
+<body>
+<!-----start-main---->
+<div class="main">
+    <div class="login-form">
+        <h1>Member Login</h1>
+        <div class="head">
+            <img src="__IMG__index.png" alt=""/>
+        </div>
+        <form action="" method="post" name="loginForm">
+            <input type="text" class="text" value="" name="username" id="username"/>
+            <!--<h2 id="showUsernameError"></h2>-->
+            <input type="password" value=""  name="password" id="password"/>
+            <input placeholder="请输入验证码" name="captcha" class="captcha" type="text" id="captcha" style="margin-bottom: 0px;width: 150px;float: left;"/>
+            <img id="captcha_img" onclick="this.src='{:captcha_src()}?d='+Math.random();" alt="点击更换" title="点击更换" src="{:captcha_src()}" class="m" style="margin-left: 0px;height: 40px;width: 150px;">
+            <h2 id="showPasswordError"></h2>
+            <div class="submit">
+                <input type="button" value="LOGIN" id="submitForm"/>
+            </div>
+        </form>
+    </div>
+    <!--//End-login-form-->
+    <!-----start-copyright---->
+    <div class="copy-right">
+        <p>Copyright &copy; 2016.张路版权所有!</p>
+    </div>
+    <!-----//end-copyright---->
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新增自定义菜单</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- 可选的Bootstrap主题文件（一般不使用） -->
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+body {
+	font: 14px/1.5 "microsoft yahei", Helvetica, Tahoma, Arial,
+		"Microsoft jhengHei", sans-serif;
+	color: #404040;
+}
+
+#main {
+	margin: 0 auto;
+	width: 90%;
+	height: 100%;
+}
+</style>
+
+</head>
+<body>
+	<input type="hidden" name="id" value="{$id}" />
+	<div id="main">
+		<!-- 一级菜单 -->
+		<div id="one_menu">
+			<h5>
+				<span style="color: #F00; vertical-align: -6px; font-size: 20px;">*</span>一级菜单（如果是一级菜单，选择“无”即可）
+			</h5>
+			<select class="form-control" style="width: 20%; border-radius: 1px;">
+				<option value="0" selected="">无</option>
+				<option value="1">微信认证订阅号</option>
+				<option value="2">普通服务号</option>
+				<option value="3">微信认证服务号</option>
+			</select>
+		</div>
+		<!-- 菜单名 -->
+		<div id="menu_name">
+			<h5>
+				<span style="color: #F00; vertical-align: -6px; font-size: 20px;">*</span>菜单名
+				（可创建最多 3 个一级菜单，每个一级菜单下可创建最多 5 个二级菜单。编辑中的菜单不会马上被用户看到，请放心调试。）
+			</h5>
+			<input type="text" class="form-control" id="name" placeholder="请输入名称"
+				style="border-radius: 0px; width: 40%;">
+		</div>
+		<!-- 菜单动作（url，素材等） -->
+		<div id="menu_action">
+			<h5>一级菜单（如果是一级菜单，选择“无”即可）</h5>
+			<select class="form-control" style="width: 20%; border-radius: 1px;"
+				id="select_change">
+				<option value="0" selected="">NULL</option>
+				<option value="1">自定义</option>
+			</select>
+		</div>
+		<!-- 菜单动作（url，素材等->对应得相应的动作，默认隐藏 -->
+		<div id="menu_action_response" style="display: none;">
+			<h5>类型</h5>
+			{volist name="custom_menu_click_type" id="vo"} <label> <input
+				type="radio" name="optionsRadios" value="{$vo.id}" checked
+				style="float: left;"> {$vo.click_type_describe}
+			</label> {/volist}
+		</div>
+		<!-- 菜单动作（url，素材等->对应得相应的动作的值，默认隐藏 -->
+		<div id="menu_action_response_value" style="display: none">
+			<h5>类型值</h5>
+			<input type="text" class="form-control"
+				style="border-radius: 0px; width: 60%;">
+		</div>
+		<!-- 菜单排序号 -->
+		<div id="menu_num">
+			<h5>排序号 （数值越小越靠前）</h5>
+			<input type="number" class="form-control" value="0"
+				style="border-radius: 0px; width: 20%;">
+		</div>
+		<!-- 保持 -->
+		<div id="menu_save" style="text-align: center;">
+			<button type="button" class="btn btn-success"
+				style="padding: 12px 50px; font-size: 16px;">成功按钮</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+    $(function () {
+        $("#select_change").change(function () {
+            var select_change = $("#select_change").val();
+            switch (select_change) {
+                case ("0"):
+                    $("#menu_action_response").hide();
+                    $("#menu_action_response_value").hide();
+                    alert(select_change);
+                    break;
+                case ("1"):
+                    $("#menu_action_response").show();
+                    $("#menu_action_response_value").show();
+                    break;
+            }
+            $("input:radio[name=optionsRadios]").click(function () {
+                var custom_menu_click_type = $('input:radio[name=optionsRadios]:checked').val();
+                if (custom_menu_click_type == "9") {
+                    $("#menu_action_response_value").hide();
+                } else {
+                    $("#menu_action_response_value").show();
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

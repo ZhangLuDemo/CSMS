@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="__CSS__lib/html5.js"></script>
+    <script type="text/javascript" src="__CSS__lib/respond.min.js"></script>
+    <script type="text/javascript" src="__CSS__lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__lib/Hui-iconfont/1.0.7/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__lib/icheck/icheck.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/css/style.css"/>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]--><title>用户查看</title>
+</head>
+<body>
+<!--<div class="cl pd-20" style=" background-color:#5bacb6">-->
+<!--<img class="avatar size-XL l" src="static/h-ui/images/user.png">-->
+<!--<dl style="margin-left:80px; color:#fff">-->
+<!--<dt><span class="f-18">张三</span> <span class="pl-10 f-12">余额：40</span></dt>-->
+<!--<dd class="pt-10 f-12" style="margin-left:0">这家伙很懒，什么也没有留下</dd>-->
+<!--</dl>-->
+<!--</div>-->
+<div class="pd-20">
+    <table class="table">
+        <tbody>
+        <tr>
+            <th class="text-r" width="80">ID：</th>
+            <td>{$arrayData[0]}</td>
+        </tr>
+        <tr>
+            <th class="text-r" width="80">帐号密码：</th>
+            <td>{$arrayData[15]}</td>
+        </tr>
+        <tr>
+            <th class="text-r">客服单位：</th>
+            <td>{$arrayData[1]}</td>
+        </tr>
+        <tr>
+            <th class="text-r">联系人：</th>
+            <td>{$arrayData[2]}</td>
+        </tr>
+        <tr>
+            <th class="text-r">联系电话：</th>
+            <td>{$arrayData[3]}</td>
+        </tr>
+        <tr>
+            <th class="text-r">远程信息：</th>
+            <td>{$arrayData[4]}</td>
+        </tr>
+        <tr>
+            <th class="text-r">手续费：</th>
+            <td>{$arrayData[5]}‰
+                {if condition="$arrayData[6] == 0"}<span style="color: #000">企业出</span>{/if}
+                {if condition="$arrayData[6] == 1"}<span style="color:red">用户出</span>{/if}
+            </td>
+        </tr>
+        <tr>
+            <th class="text-r">是否启用：</th>
+            {if condition="$arrayData[7] == 0"}
+            <td>已启用</td>
+            {/if}
+            {if condition="$arrayData[7] == 1"}
+            <td>未启用</td>
+            {/if}
+        </tr>
+        <tr>
+            <th class="text-r">产品类型：</th>
+            <td>
+                {volist name="productData" id="vo"}
+                {$vo['product_name']}
+                {/volist}
+            </td>
+        </tr>
+        <tr>
+            <th class="text-r">版本信息：</th>
+            <td>
+                {$dtCenterData['dtcenter_name']}
+            </td>
+        </tr>
+        <tr>
+            <th class="text-r">用戶数：</th>
+            <td>
+                {$arrayData[11]}
+            </td>
+        </tr>
+        <tr>
+            <th class="text-r">转账日期：</th>
+            <td>
+                {$arrayData[12]}
+            </td>
+        </tr>
+        <tr>
+            <th class="text-r">创建日期：</th>
+            <td>
+                {$arrayData[13]}
+            </td>
+        </tr>
+        <tr>
+            <th class="text-r">备注：</th>
+            <td>
+                {$arrayData[10]}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="position: absolute;top: 0px;left: 500px;"><img src="{$file_path}{$arrayData[14]}" style="width: 250px;height: 250px"></div>
+    <div style="position: absolute;bottom: 100px;left: 500px;"><img src="{$file_path}{$arrayData[17]}" style="width: 64px;height: 64px"></div>
+</div>
+<script type="text/javascript" src="__CSS__js/jquery.min.js"></script>
+<script type="text/javascript" src="__CSS__static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="__CSS__static/h-ui.admin/js/H-ui.admin.js"></script>
+</body>
+</html>

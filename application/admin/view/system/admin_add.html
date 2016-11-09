@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="__CSS__system.css">
+    <style>
+        .uploader {
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ddd;
+            cursor: default;
+            display: inline-block;
+            margin: 10px 0;
+            margin-left: 220px;
+            overflow: hidden;
+            padding: 0;
+            position: relative;
+        }
+
+        .uploader input[type="file"] {
+            border: 0 none;
+            bottom: 0;
+            cursor: pointer;
+            height: 30px;
+            margin: 0;
+            opacity: 0;
+            padding: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .filename {
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top, #fafafa 0%, #eee 100%) repeat scroll 0 0;
+            border-color: #ccc;
+            border-image: none;
+            border-radius: 5px 0 0 5px;
+            border-style: solid none solid solid;
+            border-width: 1px 0 1px 1px;
+            box-shadow: 0 0 1px #fff inset;
+            box-sizing: border-box;
+            color: #777;
+            cursor: default;
+            display: inline-block;
+            float: left;
+            font: 9pt/100% Arial, Helvetica, sans-serif;
+            height: 32px;
+            margin: 0;
+            outline: 0 none;
+            overflow: hidden;
+            padding: 8px 10px;
+            text-overflow: ellipsis;
+            text-shadow: 1px 1px 0 #fff;
+            white-space: nowrap;
+            width: 180px;
+        }
+
+        .uploader input[type="file"] {
+            border: 0 none;
+            bottom: 0;
+            cursor: pointer;
+            height: 30px;
+            margin: 0;
+            opacity: 0;
+            padding: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<form action="" enctype="multipart/form-data" >
+    <div class="list">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="details">
+            <tbody>
+            <tr>
+                <td>
+                    <div align="right">用户组：</div>
+                </td>
+                <td><select name="group_id" id="group_id" style="height:32px;">
+                    <option value="">--- 请选择用户组 ---</option>
+                    {volist name="data" id="vo"}
+                    <option value="{$vo['id']}">{$vo['title']}</option>
+                    {/volist}
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    <div align="right">账号：</div>
+                </td>
+                <td width="75%"><input type="text" name="account" id="account" size="24" value=""/>
+                    <input type="hidden" id="account_hidden" value="0"/>
+                    <span id="account_trips"> * 长度不低于5位</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">密码：</div>
+                </td>
+                <td><input type="text" name="password" id="password" size="24" value=""/></td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">重复密码：</div>
+                </td>
+                <td><input type="text" name="password2" id="password2" size="24" value=""/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="uploader white">
+        <input type="text" class="filename" readonly="readonly"/>
+        <input type="button" name="button" class="button" value="上传头像"/>
+        <input type="file" name="file" />
+    </div>
+    <div class="footer">
+        <input type="button" value="提交" style="min-width:160px;" id="button"/>
+    </div>
+</form>
+</body>
+<script type="text/javascript" src="__CSS__lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__CSS__lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__JS__jquery-form.js"></script>
+<script>
+    $(function () {
+        $('#account').keyup(function () {
+            var account = $('#account').val();
+            if (account.length >= 5) {
+                $.get("__CSMS__admin/system/check_account", {"account": account}, function (data) {
+                    if (data == 1) {
+                        $('#account_trips').html(' × 账号已存在');
+                        $('#account_trips').css('color', 'red');
+                        $('#account_hidden').val(1);
+                    } else {
+                        $('#account_trips').html(' √ 账号可用');
+                        $('#account_trips').css('color', 'blue');
+                        $('#account_hidden').val(0);
+                    }
+                }, "json");
+            } else {
+                $('#account_trips').html(' × 账号必须为5位以上');
+                $('#account_trips').css('color', 'red');
+                $('#account_hidden').val(3);
+            }
+        });
+        $("input[type=file]").change(function () {
+            $(this).parents(".uploader").find(".filename").val($(this).val());
+        });
+        $("input[type=file]").each(function () {
+            if ($(this).val() == "") {
+                $(this).parents(".uploader").find(".filename").val("请选择你的头像......");
+            }
+        });
+        $('#button').click(function () {
+            var account = $('#account').val();
+            var password = $('#password').val();
+            var password2 = $('#password2').val();
+            var group_id = $('#group_id').val();
+            var account_hidden = $('#account_hidden').val();
+            if (group_id == '') {
+                layer.tips('请选择用户组', '#group_id');
+                return false;
+            }
+            if (account == '') {
+                layer.tips('请输入账号', '#account');
+                return false;
+            }
+            if (account.length < 5) {
+                layer.tips('长度不应低于5位', '#account');
+                return false;
+            }
+            if (password == '') {
+                layer.tips('请输入密码', '#password');
+                return false;
+            }
+            if (password2 == '') {
+                layer.tips('请输入新密码', '#password2');
+                return false;
+            }
+            if (password != password2) {
+                layer.msg('两次密码必须一样');
+                return false;
+            }
+            if (account_hidden == 1) {
+                layer.msg('账号重复，请重新输入');
+                return false;
+            }
+            var f = jQuery('form').serialize();// 要提交的表单
+            $('form').ajaxSubmit({
+                type: "post",  //提交方式
+                dataType: "json", //数据类型
+                url: "__CSMS__admin/system/admin_add",
+                data: f,
+                success: function (data) {
+                    if (data.msg == 1) {
+                        layer.msg('添加成功，正在跳转中...', {icon: 1, time: 2000, shade: 0.5}, function () {
+                            window.location.reload();    //刷新父页面
+                        });
+                    } else if (data.msg == 2) {
+                        layer.msg('分配用户组失败，请重新分配', {icon: 2, time: 2000}, function () {
+                            window.location.reload();
+                        });
+                    } else {
+                        layer.msg(data.msg, {icon: 2, time: 10000}, function () {
+                            window.location.reload();
+                        });
+                    }
+                }
+            });
+           //return false;//不刷新页面(如果提交按钮是submit就必须return false 不是会提交2次!导致失败)
+        });
+    });
+</script>
+</html>

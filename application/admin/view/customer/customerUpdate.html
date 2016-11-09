@@ -1,0 +1,240 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <LINK rel="Bookmark" href="/favicon.ico">
+    <LINK rel="Shortcut Icon" href="/favicon.ico"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="__CSS__lib/html5.js"></script>
+    <script type="text/javascript" src="__CSS__lib/respond.min.js"></script>
+    <script type="text/javascript" src="__CSS__lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__lib/Hui-iconfont/1.0.7/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__lib/icheck/icheck.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__static/h-ui.admin/css/style.css"/>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <style>
+        /*a  upload */
+        .a-upload {
+            padding: 4px 10px;
+            height: 20px;
+            line-height: 20px;
+            position: relative;
+            cursor: pointer;
+            color: #888;
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1
+        }
+
+        .a-upload  input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer
+        }
+
+        .a-upload:hover {
+            color: #444;
+            background: #eee;
+            border-color: #ccc;
+            text-decoration: none
+        }
+    </style>
+    <!--/meta 作为公共模版分离出去-->
+    <title>更新用戶 - H-ui.admin v2.3</title>
+</head>
+<body>
+<article class="page-container">
+    <form action=""  class="form form-horizontal" id="form-member-add" enctype="multipart/form-data">
+        <input name="customerId" type="hidden" id="customerId" value="{$data['customer_id']}"/>
+        <input name="sign" type="hidden"  id="sign" value="1"/>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账号密码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$data['customer_up']}" placeholder="" id="customer_up" name="customer_up">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>客服单位：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$data['customer_name']}" placeholder="" id="customer_name" name="customer_name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系人：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$data['customer_contacts']}" placeholder="" id="customer_contacts"
+                       name="customer_contacts">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系方式：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" name="customer_phone" id="customer_phone" value="{$data['customer_phone']}">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>远程信息：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" name="customer_remote" id="customer_remote" value="{$data['customer_remote']}">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手续费：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" name="customer_shouxufei" id="customer_shouxufei" value="{$data['customer_shouxufei']}">
+                <select class="select" size="1" name="customer_sxf_sorts" style="width: 100px">
+                    {if condition="$data['customer_sxf_sorts'] == 0"}
+                    <option value="0" selected='selected'>企业出</option>
+                    <option value="1">用户出</option>
+                    {else/}
+                    <option value="0">企业出</option>
+                    <option value="1" selected='selected'>用户出</option>
+                    {/if}
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户数：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" name="customer_count" id="customer_count" value="{$data['customer_count']}">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>打款日期：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" name="customer_dkrq" id="customer_dkrq" value="{$data['customer_dkrq']}">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>数据中心版本：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <select class="select" size="1" name="dtCenterId" style="width: 150px">
+                    {volist name="dtCenterData" id="vo"}
+                    {if condition="$data['customer_dtcenterid']==$vo['dtcenter_id']"}
+                    <option value="{$vo['dtcenter_id']}" selected='selected'>{$vo['dtcenter_name']}</option>
+                    {else /}
+                    <option value="{$vo['dtcenter_id']}" >{$vo['dtcenter_name']}</option>
+                    {/if}
+                    {/volist}
+
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>是否启用：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <select class="select" size="1" name="customer_state" style="width: 150px">
+                    {if condition="$data['customer_state']==0"}
+                    <option value="0" selected='selected'>启用</option>
+                    <option value="1" >未启用</option>
+                    {else /}
+                    <option value="0" >启用</option>
+                    <option value="1" selected='selected'>未启用</option>
+                    {/if}
+                </select>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>产品类型：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                {volist name="productData" id="vo"}
+                {in name="$vo['product_id']" value="$data['customer_productid']"}
+                <div class="radio-box">
+                    <input name="product{$vo['product_id']}" type="radio" id="sex-1" value="{$vo['product_id']}" checked="checked" />
+                    <label for="sex-1">{$vo['product_name']}</label>
+                </div>
+                {else/}
+                <div class="radio-box">
+                    <input name="product{$vo['product_id']}" type="radio" id="sex-1" value="{$vo['product_id']}" />
+                    <label for="sex-1">{$vo['product_name']}</label>
+                </div>
+                {/in}
+                {/volist}
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">备注：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="customer_note" cols="" rows="" class="textarea" placeholder="说点什么...最少输入10个字符"
+                          onKeyUp="textarealength(this,400)" style="width: 450px">{$data['customer_note']}</textarea>
+                <p class="textarea-numberbar"><em class="textarea-length">0</em>/400</p>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">附件：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+				 <a href="javascript:;" class="a-upload">
+                     <input type="file" name="file" id="uploadFile">上传二維嗎
+                 </a>
+                <a href="javascript:;" class="a-upload">
+                    <input type="file" name="logo" id="uploadLogo">上传LOGO
+                </a>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3" id="submitForm">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__CSS__lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__CSS__lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__CSS__lib/icheck/jquery.icheck.min.js"></script>
+<script type="text/javascript" src="__CSS__lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="__CSS__lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__CSS__lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<script type="text/javascript" src="__CSS__static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="__CSS__static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="__JS__jquery-form.js"></script>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+    $(function () {
+        $("form").submit(function () {
+            var f = jQuery('form').serialize();// 要提交的表单
+            $(this).ajaxSubmit({
+                type:"post",  //提交方式
+                dataType:"json", //数据类型
+                url:"__CSMS__admin/customer/customerUpdate",
+                data:f,
+                success:function(data){ //提交成功的回调函数
+                    alert(data.msg);
+                    layer_close();
+                },
+                error:function(data){
+                    alert(data.msg);
+                    layer_close();
+                }
+            });
+            return false; //不刷新页面
+        });
+    });
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

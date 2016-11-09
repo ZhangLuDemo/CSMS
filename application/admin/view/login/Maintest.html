@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="__JS__jquery.min.js"></script>
+    <script type="text/javascript" src="__JS__jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="__JS__jquery.tabs.js"></script>
+    <link rel="stylesheet" type="text/css" href="__JS__easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="__JS__tabs.css"/>
+    <link rel="stylesheet" type="text/css" href="__JS__icon.css"/>
+    <link rel="stylesheet" type="text/css" href="__JS__demo.css"/>
+</head>
+<body>
+<div style="float: left">
+    <div style="margin-bottom:10px">
+        <a href="#" class="easyui-linkbutton" onclick="addTab('google','http://www.google.com')">google</a>
+        <a href="#" class="easyui-linkbutton" onclick="addTab('jquery','http://jquery.com/')">jquery</a>
+        <a href="#" class="easyui-linkbutton" onclick="addTab('easyui','http://jeasyui.com/')">easyui</a>
+    </div>
+    <div style=""> <a href="#" class="easyui-linkbutton" onclick="addTab('baidu','http://www.baidu.com')">baidu.com</a></div>
+</div>
+<div id="tt" class="easyui-tabs" style="height:600px">
+    <div title="Home">
+    </div>
+</div>
+<script type="text/javascript">
+    function addTab(title, url) {
+        if ($('#tt').tabs('exists', title)) {
+            $('#tt').tabs('select', title);
+        } else {
+            var content = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:100%;"></iframe>';
+            $('#tt').tabs('add', {
+                title: title,
+                content: content,
+                closable: true,
+
+            });
+        }
+    }
+</script>
+</body>
+</html>
